@@ -1,0 +1,289 @@
+/* ======================================= */
+/* 1. הגדרות גלובליות ומשתני צבע */
+/* ======================================= */
+
+/* פלטת צבעים גלובלית (מעודכנת, עם פחות סגול) */
+:root {
+  /* סגול עמוק (שימוש מופחת - כותרות ונגיעות) */
+  --color-primary: #6F42C1;
+  /* תכלת/כחול בהיר (שימוש מוגבר - כפתורים ורקעים משניים) */
+  --color-secondary: #85A3FF;
+  /* רקע כללי של הטפסים וה-NAV */
+  --color-form-background: #1C2B40;
+  /* צהוב הדגשה (נגיעות) */
+  --color-accent-yellow: #FFC900;
+  /* צהוב הניווט הישן (שמירה על הפס הצהוב ב-NAV) */
+  --color-nav-border: #FFC900;
+  /* אדום להדגשות/לינקים אקטיביים */
+  --color-accent-red: #E8234B;
+  --color-text-dark: #343a40;
+  --color-text-nav: #ffffff;
+  /* כחול טקסט ב-NAV */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  height: auto;
+}
+
+body {
+  font-family: sans-serif;
+  line-height: 1.4;
+  display: block;
+  min-height: 100vh;
+  padding-top: 78px !important;
+
+  overflow-y: auto;
+  height: 100%;
+
+  input,
+  textarea,
+  p,
+  h1,
+  h2,
+  h3,
+  span,
+  div,
+  strong,
+  label {
+    unicode-bidi: plaintext;
+  }
+}
+
+/* ***** תיקון: הגבלת רוחב הטקסט לקריאות טובה יותר ***** */
+p {
+  max-width: 600px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+
+/* ======================================= */
+/* 2. סרגל הניווט (NAV) */
+/* ======================================= */
+
+.nav-wrapper {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 9999;
+  background: var(--color-form-background);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  direction: rtl;
+  transition: transform 0.3s ease-in-out;
+  /* ***** יישום Tahoma רק על ה-NAV ***** */
+  font-family: Tahoma, sans-serif;
+}
+
+/* קלאסים ללוגיקת NAV (חובה) */
+.nav-hide {
+  transform: translateY(-100%);
+}
+
+.nav-show {
+  transform: translateY(0);
+}
+
+.nav {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 28px;
+  padding: 16px 35px;
+  direction: rtl;
+  border-bottom: 2px solid var(--color-nav-border);
+}
+
+.link {
+  text-decoration: none;
+  color: var(--color-text-nav);
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 18px;
+  transition: 0.25s ease;
+}
+
+.link:hover {
+  background-color: rgba(232, 35, 75, 0.5);
+  color: #fafafa;
+  transform: translateY(-2px);
+}
+
+.link.active {
+  font-weight: 700;
+  color: #E8234B;
+}
+
+.hello {
+  margin: 0;
+  font-weight: 600;
+  color: #E8234B;
+  font-size: 18px;
+}
+
+/* ***** NAV Logo Area CSS - לוגיקת פריסה ***** */
+.nav-logo-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  /* ***** תיקון: דוחף את אזור הלוגו לקצה השמאלי (Flex End) ***** */
+  margin-right: auto;
+  margin-left: 0;
+  /* ביטול הכלל השגוי */
+}
+
+.nav-logo {
+  height: 40px;
+  width: auto;
+}
+
+.nav-logo-area.logged-in {
+  /* ברכה מימין ללוגו (כיוון שהברכה ב-JSX באה אחרי הלוגו) */
+  flex-direction: row;
+}
+
+.nav-logo-area.logged-out {
+  position: absolute;
+  left: 35px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+
+/* ======================================= */
+/* 3. טפסי כניסה/הרשמה (LOGIN/SIGNUP) */
+/* ======================================= */
+
+.container,
+.container1 {
+  border-bottom: 3px solid var(--color-nav-border);
+  max-width: 450px;
+  margin: 10vh auto 150px auto;
+  padding: 36px 48px 48px 48px;
+  background-color: var(--color-form-background);
+  border-radius: 35px;
+  box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.15);
+}
+
+.login-title,
+.SignUp-title {
+  padding: 15px;
+  font-size: 22px;
+  font-weight: 600;
+  text-align: center;
+  color: var(--color-accent-red);
+}
+
+.login-form label,
+.SignUp-form label,
+div label {
+  display: block;
+  margin-top: 0.5cm;
+  color: #1e293b;
+}
+
+.login-form input,
+.SignUp-form input,
+div input {
+  width: 100%;
+  padding: 1.2rem;
+  border-radius: 35px;
+  border: none;
+  font-size: 0.4cm;
+}
+
+.login-form input:focus,
+.SignUp-form input:focus,
+div input:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(244, 247, 252, 0.5);
+}
+
+.btn--form:hover,
+div button:hover {
+  color: #ff0000;
+}
+
+.btn,
+.btn:link,
+.btn:visited,
+div button {
+  display: inline-block;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 600;
+  border-radius: 35px;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.3s;
+  box-shadow: 0 0 0 4px rgba(178, 178, 178, 0.2);
+  width: 8cm;
+}
+
+#btn_log,
+#btn_Sign {
+  margin-top: 1cm;
+}
+
+
+/* ======================================= */
+/* 4. סגנונות דף הבית (HOME) */
+/* ======================================= */
+
+.home-container {
+  text-align: center;
+  direction: rtl;
+  font-family: inherit;
+  width: 100%;
+  padding-top: 0;
+}
+
+/* --- סגנונות טופס כלליים --- */
+
+#viewDetails {
+  width: 50%;
+  margin: 0 auto;
+  box-shadow: 0 20px 60px rgba(102, 126, 234, 0.18);
+  margin-top: 0.8cm;
+  animation: fadeSlideIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-bottom: 3cm;
+
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#status {
+  animation: fadeSlideIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+form {
+  animation: fadeSlideIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Custom CSS ל-React Toastify */
+.Toastify__toast {
+  background-color: white !important;
+  color: #343a40 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
+  padding: 15px 20px !important;
+  border: 1px solid #e0e0e0;
+}
+
+/* ... כללי Toastify ... */
+
+.Toastify__close-button {
+  color: #6c757d !important;
+}

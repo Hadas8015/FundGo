@@ -1,0 +1,99 @@
+/* Student_Grants_Project/Components/Home.css */
+
+/* הקונטיינר הראשי של דף הבית */
+.home-container-wrapper {
+    width: 100%;
+    padding-top: 0;
+    /* ***** תיקון: הסרת overflow: hidden כדי לאפשר גלילה על ה-window ***** */
+}
+
+/* ה-Div שמכיל את תמונת הרקע וקובע את הגובה הכולל */
+.home-image-scroller {
+    /* ***** חובה לשנות את הנתיב לתמונה שלך! ***** */
+    background-image: url('../pictures/home.png'); 
+    
+    width: 100%;
+    /* גובה קשיח שנועד להתאים לגובה התמונה שלך */
+    height: 4500px; 
+    
+    /* ***** קריטי: הגדרת גודל רקע ***** */
+    background-size: 100% auto; /* מכסה 100% מהרוחב, הגובה אוטומטי (שומר על פרופורציות) */
+    background-position: top center; 
+    background-repeat: no-repeat;
+    
+    position: relative; /* הופך לנקודת ייחוס לשכבות העל */
+    direction: rtl;
+}
+
+/* ***** שכבת העל למוני הסטטיסטיקה (מיקום מדויק) ***** */
+.stats-positioning-anchor {
+    position: absolute;
+    top: 49.6%; 
+    left: 50%;
+    transform: translateX(-50%); 
+    width: 60%; 
+    max-width: 10000px; 
+    z-index: 10;
+}
+
+.stats-grid-overlay {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px; 
+    text-align: center;
+    color: white; 
+    padding: 0; 
+    margin: 0;
+}
+
+.stat-item-overlay {
+    padding: 10px 5px; 
+}
+
+.stat-number-overlay {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--color-accent-yellow); 
+    direction: ltr; 
+    margin-bottom: 5px;
+}
+
+.stat-suffix {
+    font-size: 1.5rem;
+    margin-right: 5px;
+}
+
+.stat-label-overlay {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+/* ***** מיקום כפתור CTA ראשי (משוער) ***** */
+.cta-overlay-position-main {
+    position: absolute;
+    top: 800px; 
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+/* ... כללי רספונסיביות בסיסיים ... */
+@media (max-width: 768px) {
+    .stats-positioning-anchor {
+        top: 66%;
+        width: 90%;
+    }
+    .stats-grid-overlay {
+        gap: 10px;
+    }
+    .stat-number-overlay {
+        font-size: 1.5rem;
+    }
+    .stat-suffix {
+        font-size: 1.1rem;
+    }
+    .stat-label-overlay {
+        font-size: 0.9rem;
+    }
+}
